@@ -35,3 +35,17 @@ services:
         sync: false
       - key: GEMINI_API_KEY
         sync: false
+
+  - type: web
+    name: agentflow-frontend
+    runtime: node
+    rootDir: client
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_API_URL
+        sync: false
+      - key: NEXT_PUBLIC_SOCKET_URL
+        sync: false
