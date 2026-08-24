@@ -29,7 +29,13 @@ app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use(compression());
 app.use(morgan(config.nodeEnv === 'production' ? 'combined' : 'dev'));
 app.use(cors({
-  origin: [config.clientUrl, 'http://localhost:3000', 'http://127.0.0.1:3000'],
+  origin: (origin, callback) => {
+    const allowedOrigins = [config.clientUrl, 'http://localhost:3000', 'http://127.0.0.1:3000'];
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error('Origin is not allowed by CORS'));
+  },
   credentials: true,
 }));
 app.use(express.json({ limit: '10mb' }));
