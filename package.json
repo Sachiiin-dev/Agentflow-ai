@@ -1,0 +1,23 @@
+{
+  "name": "agentflow-ai-monorepo",
+  "version": "1.0.0",
+  "description": "Agentic AI Automation Platform (Agentflow_AI)",
+  "scripts": {
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue,green\" \"npm run dev:server\" \"npm run dev:client\"",
+    "db:start": "docker compose up -d mongodb",
+    "db:stop": "docker compose down",
+    "build:client": "cd client && npm run build",
+    "start:server": "cd server && npm run start",
+    "start:client": "cd client && npm run start",
+    "test:server": "cd server && npm run test"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "dependencies": {
+    "mongodb": "^7.5.0"
+  }
+}

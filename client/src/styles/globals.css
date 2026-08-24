@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --slate-50: 248 250 252;
+    --slate-100: 241 245 249;
+    --slate-200: 226 232 240;
+    --slate-300: 203 213 225;
+    --slate-400: 148 163 184;
+    --slate-500: 100 116 139;
+    --slate-600: 71 85 105;
+    --slate-700: 51 65 85;
+    --slate-800: 30 41 59;
+    --slate-900: 15 23 42;
+    --slate-950: 2 6 23;
+    color-scheme: dark;
+  }
+
+  :root.light {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+    --slate-50: 15 23 42;
+    --slate-100: 30 41 59;
+    --slate-200: 51 65 85;
+    --slate-300: 71 85 105;
+    --slate-400: 100 116 139;
+    --slate-500: 100 116 139;
+    --slate-600: 148 163 184;
+    --slate-700: 203 213 225;
+    --slate-800: 226 232 240;
+    --slate-900: 248 250 252;
+    --slate-950: 255 255 255;
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-[#070b14] text-slate-100 antialiased font-sans selection:bg-brand-500 selection:text-white;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+:root.light body {
+  @apply bg-slate-100 text-slate-100;
+}
+
+:root.light [class*="bg-[#070b14]"],
+:root.light [class*="bg-[#060912]"],
+:root.light [class*="bg-[#080d1a]"],
+:root.light [class*="bg-[#090e1a]"],
+:root.light [class*="bg-[#090e1c]"],
+:root.light [class*="bg-[#0a0f1d]"],
+:root.light [class*="bg-[#0c1222]"],
+:root.light [class*="bg-[#0d1424]"],
+:root.light [class*="bg-[#0e1628]"] {
+  background-color: rgb(var(--slate-950) / 0.96) !important;
+}
+
+:root.light .bg-gradient-to-b {
+  --tw-gradient-from: rgb(var(--slate-100) / 1) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(var(--slate-200) / 1) var(--tw-gradient-to-position);
+}
+
+:root.light .glass-panel {
+  background: rgb(255 255 255 / 0.78);
+  border-color: rgb(148 163 184 / 0.35);
+}
+
+:root.light .text-white {
+  color: rgb(15 23 42) !important;
+}
+
+/* Custom modern scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(71, 85, 105, 0.6);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.9);
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(30, 41, 59, 0.85);
+  border-color: rgba(99, 102, 241, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 0 15px 0 rgba(99, 102, 241, 0.2);
+}
+
+/* React Flow customization */
+.react-flow__attribution {
+  display: none !important;
+}
+
+.react-flow__node {
+  border-radius: 12px;
+  cursor: grab;
+}
+
+.react-flow__node:active {
+  cursor: grabbing;
+}
+
+.react-flow__handle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #0f172a;
+  background-color: #60a5fa;
+  transition: transform 0.2s;
+}
+
+.react-flow__handle:hover {
+  transform: scale(1.3);
+}
+
+.react-flow__edge-path {
+  stroke-width: 2.5;
+  stroke: #4f46e5;
+}
+
+.react-flow__controls {
+  background: rgba(15, 23, 42, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+
+.react-flow__controls-button {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  color: #cbd5e1 !important;
+  fill: #cbd5e1 !important;
+}
+
+.react-flow__controls-button:hover {
+  background: rgba(51, 65, 85, 0.8) !important;
+}
