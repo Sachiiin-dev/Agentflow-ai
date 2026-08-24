@@ -2,8 +2,9 @@ const nodemailer = require('nodemailer');
 const config = require('../config/env');
 
 const sendPasswordResetEmail = async (email, token) => {
-  if (!config.mail.user || !config.mail.appPassword) {
-    const err = new Error('Gmail SMTP is not configured. Set GMAIL_USER and GMAIL_APP_PASSWORD in server/.env.');
+  const appPassword = config.mail.appPassword.replace(/\s/g, '');
+  if (!config.mail.user || !config.mail.user.includes('@') || appPassword.length !== 16) {
+    const err = new Error('Gmail SMTP is not configured correctly. GMAIL_USER must be a Gmail address and GMAIL_APP_PASSWORD must be a 16-character App Password.');
     err.statusCode = 503;
     throw err;
   }
@@ -12,8 +13,11 @@ const sendPasswordResetEmail = async (email, token) => {
     service: 'gmail',
     auth: {
       user: config.mail.user,
-      pass: config.mail.appPassword,
+      pass: appPassword,
     },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 15000,
   });
 
   const resetUrl = `${config.clientUrl}/reset-password?token=${token}`;
